@@ -99,7 +99,8 @@ export default function useChatFunctions({
     resetLatestMultiMessage();
 
     text = text.trim();
-    if (!!isSubmitting || text === '') {
+    const hasFiles = files != null && files.size > 0;
+    if (!!isSubmitting || (text === '' && !hasFiles)) {
       return;
     }
 

@@ -151,8 +151,9 @@ const ChatForm = memo(({ index = 0 }: { index?: number }) => {
 
   useQueryParams({ textAreaRef });
 
+  const hasFiles = Boolean(files?.size);
+
   const { ref, ...registerProps } = methods.register('text', {
-    required: true,
     onChange: useCallback(
       (e: React.ChangeEvent<HTMLTextAreaElement>) =>
         methods.setValue('text', e.target.value, { shouldValidate: true }),
@@ -347,6 +348,7 @@ const ChatForm = memo(({ index = 0 }: { index?: number }) => {
                     <SendButton
                       ref={submitButtonRef}
                       control={methods.control}
+                      hasFiles={hasFiles}
                       disabled={filesLoading || isSubmitting || disableInputs || isNotAppendable}
                     />
                   )
